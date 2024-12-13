@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Inscription</h1>
+    <form th:action="@{/users/register}" th:object="${user}" method="post">
+        <!-- Email Field -->
+        <div>
+            <label for="email">Email :</label>
+            <input type="email" id="email" th:field="*{email}" placeholder="Entrez votre email" required>
+        </div>
+
+        <!-- Name Field -->
+        <div>
+            <label for="name">Nom :</label>
+            <input type="text" id="name" th:field="*{nom}" placeholder="Entrez votre nom" required>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" th:field="*{motDePasse}" placeholder="Entrez votre mot de passe" required>
+        </div>
+
+        <!-- Role Selection -->
+        <div>
+            <label for="role">Rôle :</label>
+            <select id="role" th:field="*{role}" required>
+                <option value="PASSAGER">Passager</option>
+                <option value="CONDUCTEUR">Conducteur</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit">S'inscrire</button>
+        </div>
+
+        <!-- Error Message -->
+        <div th:if="${error}" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+    </form>
+</div>
+</body>
+</html>
